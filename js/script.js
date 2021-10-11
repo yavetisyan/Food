@@ -2,7 +2,7 @@ const apiKey = "f3e44518-c40b-4eb2-a722-f47940fb3ade";
 const apiURL =
   "https://kinopoiskapiunofficial.tech/api/v2.2/films/top?type=TOP_100_POPULAR_FILMS&page=";
 
-const keySearch = "https://kinopoiskapiunofficial.tech/api/v2.2/films/";
+const keySearch = "https://kinopoiskapiunofficial.tech/api/v2.1/films/search-by-keyword?keyword=bat&page";
 
 const infoApi = "https://kinopoiskapiunofficial.tech/api/v2.2/films/";
 
@@ -85,7 +85,6 @@ function removeOpenedModals() {
 
 function urlDescr(movieUrl, movies) {
   let movieApi = infoApi + movieUrl.filmId;
-  console.log(movieApi);
   fetch(movieApi, {
     headers: {
       "Content-Type": "application/json",
