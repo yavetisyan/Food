@@ -10,6 +10,7 @@ const form = document.querySelector("form");
 const search = document.querySelector(".header__search");
 let btn = document.getElementsByClassName("modal__btn");
 let modal = document.querySelector(".modal");
+const MODAL_CLASS_NAME = "modal";
 
 function getMovies(url) {
   fetch(url, {
@@ -77,6 +78,11 @@ form.addEventListener("submit", (e) => {
   }
 });
 
+function removeOpenedModals() {
+  const modals = document.getElementsByClassName(MODAL_CLASS_NAME);
+  [...modals].forEach((el) => el.remove());
+}
+
 function urlDescr(movieUrl, movies) {
   let movieApi = infoApi + movieUrl.filmId;
   console.log(movieApi);
@@ -88,9 +94,10 @@ function urlDescr(movieUrl, movies) {
   })
     .then((res) => res.json())
     .then((filmsData) => {
+      removeOpenedModals();
       const modalEl = document.createElement("div");
-      modalEl.innerHTML = "";
-      modalEl.classList.add("modal");
+
+      modalEl.classList.add(MODAL_CLASS_NAME);
       modalEl.innerHTML = `     
 				<div class="modal__title">
 					<button class="modal__btn">x</button>
