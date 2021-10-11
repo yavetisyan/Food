@@ -7,6 +7,11 @@
 body {
   background-color: #1a191f;
   font-family: "Open Sans", sans-serif;
+	background:url(../img/01.jpg) no-repeat;
+	background-size: cover;
+	background-position: center center;
+	background-attachment: fixed;
+
 }
 
 .container {
@@ -25,7 +30,7 @@ body {
 .header__title {
   font-size: 32px;
   text-decoration: none;
-  color: #fff;
+  color: #172a30;
   text-transform: uppercase;
   font-weight: bold;
 }
@@ -38,7 +43,7 @@ body {
 }
 
 .movies {
-		  display: flex;
+  display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
 }
@@ -54,25 +59,24 @@ body {
   left: 10px;
   width: 36px;
   height: 36px;
-	background-color: #1a191f;
+  background-color: #1a191f;
   border-radius: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
   color: #fff;
-	font-size: 14px;
+  font-size: 14px;
 }
 .movie__average-green {
-	border:2px solid #28e028
+  border: 2px solid #28e028;
 }
 
 .movie__average-orange {
-	border:2px solid #f2ff35
+  border: 2px solid #f2ff35;
 }
 .movie__average-red {
-	border:2px solid #d84035
+  border: 2px solid #d84035;
 }
-
 
 .movie__category {
   font-size: 14px;
@@ -83,7 +87,7 @@ body {
   width: 100%;
 }
 .movie__darkened {
-  max-width: 100%;
+  width: 240px;
   height: 360px;
   z-index: 1;
   background-color: #000;
@@ -109,5 +113,54 @@ body {
 }
 .movie__title {
   font-size: 16px;
+  color: #fff;
+}
+
+.modal {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  color: #fff;
+  z-index: 5;
+  width: 700px;
+  height: 500px;
+  background-color: rgba(0, 0, 0, 0.9);
+  display: block;
+  transform: translate(-50%, -50%);
+  border-radius: 10px;
+}
+
+.modal__title {
+  padding: 40px 20px;
+  text-align: center;
+}
+
+button.modal__btn {
+  position: absolute;
+  right: 10px;
+  top: 0;
+  font-size: 35px;
+  border-color: transparent;
+  background-color: transparent;
+  color: #fff;
+  cursor: pointer;
+}
+
+.modal__info {
+  margin-bottom: 20px;
+  font-size: 20px;
+  text-transform: uppercase;
+}
+
+
+.info__title {
+  display: flex;
+  justify-content: space-around;
+  position: absolute;
+  width: 100%;
+  bottom: 30px;
+}
+
+.info a {
   color: #fff;
 }

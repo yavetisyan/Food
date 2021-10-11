@@ -1,17 +1,17 @@
 const apiKey = "f3e44518-c40b-4eb2-a722-f47940fb3ade";
 const apiURL =
-  "https://kinopoiskapiunofficial.tech/api/v2.2/films/top?type=TOP_250_BEST_FILMS&page=1";
+  "https://kinopoiskapiunofficial.tech/api/v2.2/films/top?type=TOP_100_POPULAR_FILMS&page=";
 
-const keySearch =
-  "https://kinopoiskapiunofficial.tech/api/v2.1/films/search-by-keyword?keyword=";
+const keySearch = "https://kinopoiskapiunofficial.tech/api/v2.2/films/";
 
 const infoApi = "https://kinopoiskapiunofficial.tech/api/v2.2/films/";
 
 const form = document.querySelector("form");
 const search = document.querySelector(".header__search");
+let btn = document.getElementsByClassName("modal__btn");
+let modal = document.querySelector(".modal");
 
 function getMovies(url) {
-  console.log(url);
   fetch(url, {
     headers: {
       "Content-Type": "application/json",
@@ -49,7 +49,9 @@ function showMovies(data) {
 
     movies.append(movieEl);
 
-   
+    movieEl.onclick = function () {
+      urlDescr(movie, movies);
+    };
   });
 }
 
@@ -75,5 +77,39 @@ form.addEventListener("submit", (e) => {
   }
 });
 
+function urlDescr(movieUrl, movies) {
+  let movieApi = infoApi + movieUrl.filmId;
+  console.log(movieApi);
+  fetch(movieApi, {
+    headers: {
+      "Content-Type": "application/json",
+      "X-API-KEY": apiKey,
+    },
+  })
+    .then((res) => res.json())
+    .then((filmsData) => {
+      const modalEl = document.createElement("div");
+      modalEl.innerHTML = "";
+      modalEl.classList.add("modal");
+      modalEl.innerHTML = `     
+				<div class="modal__title">
+					<button class="modal__btn">x</button>
+					<div class="modal__info">${filmsData.nameRu}</div>
+					<div class="modal__descr">${filmsData.description}</div>
+								<div class="info">
+						<div class="info__title">
+							<a href="${filmsData.webUrl}" target='_blank'>Link</a>
+							<span class="year">Год: ${filmsData.year} г.</span>
+							<span class="film__length">Продолжительность: ${filmsData.filmLength} мин. </span>
+						</div>
+					</div>
+			</div>`;
 
-
+      movies.before(modalEl);
+      document
+        .querySelector(".modal__btn")
+        .addEventListener("click", function () {
+          modalEl.remove();
+        });
+    });
+}
